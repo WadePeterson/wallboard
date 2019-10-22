@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="refresh" content="5">
+	<meta http-equiv="refresh" content="3600">
 	<title>Space Flavor Wallboard</title>
 
 	<style type="text/css">
@@ -48,7 +48,7 @@
 
 		function isStandUpTime() {
 			const now = new Date()
-			return (now.getHours() == 10 && now.getMinutes() <= 15)
+			return (now.getHours() == 9 && now.getMinutes() <= 15)  //  the actual wallboard is in Pacific time
 		}
 
 		function getStandUpImage() {
@@ -71,7 +71,6 @@
 			setInterval(update, 10000)
 		}
 
-		document.writeln(new Date())
 	</script>
 
 </body>
