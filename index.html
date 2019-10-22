@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Space Flavor Wallboard</title>
+
+	<style type="text/css">
+
+	body {
+		font-family: sans-serif;
+	}
+
+	#image {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 100px;
+	}
+
+	#text {
+		text-align: center;
+		padding-top: 30pt;
+		font-size: 30pt;
+	}
+	
+	</style>
+</head>
+<body onload="boot()">
+
+	<img id="image" onclick="update(true)" alt="">
+	<div id="text"></div>
+
+	<script type="text/javascript">
+
+		const defaultImage = 'images/space-flavor.png'
+
+		function getRandomDancingCatImage() {
+			// count of cat images are in the dancing-cats folder, named numerically starting with zero
+			// (this should be one more than the highest-numbered image)
+			const cats = 6
+
+			const rand = Math.floor(Math.random() * cats)
+			return `images/dancing-cats/${rand}.gif`
+		}
+
+		function isStandUpTime() {
+			const now = new Date()
+			return (now.getHours() == 10 && now.getMinutes() <= 15)
+		}
+
+		function getStandUpImage() {
+			const image = document.getElementById('image')
+			return (image.src === "" || image.src.includes(defaultImage)) ? getRandomDancingCatImage() : image.src
+		}
+
+		function update(forceStandup) {
+			const standUp = !!forceStandup || isStandUpTime()
+
+			const image = document.getElementById('image')
+			image.src = standUp ? getStandUpImage() : defaultImage
+
+			const text = document.getElementById('text')
+			text.innerText = standUp ? 'Standup time for Space Flavor!' : ''
+		}
+
+		function boot() {
+			update()
+			setInterval(update, 10000)
+		}
+
+	</script>
+
+</body>
+</html>
